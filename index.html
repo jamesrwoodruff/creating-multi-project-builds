@@ -3,14 +3,14 @@
 <head><link crossorigin href="//assets.gradle.com" rel="preconnect">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400i">
 <link rel="stylesheet" href="https://guides.gradle.org/css/asciidoctor.css">
-<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme-4.5.2.css">
+<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme-4.7.css">
 <link rel="apple-touch-icon" sizes="180x180" href="https://guides.gradle.org/icon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-16x16.png" sizes="16x16">
 <link rel="manifest" href="https://guides.gradle.org/icon/manifest.json">
 <link rel="mask-icon" href="https://guides.gradle.org/icon/safari-pinned-tab.svg" color="#5bbad5">
 <link rel="shortcut icon" href="https://guides.gradle.org/icon/favicon.ico">
-<script defer src="https://guides.gradle.org/js/guides.js"></script>
+<script defer src="https://guides.gradle.org/js/guides-4.7.js"></script>
 <script defer src="https://guides.gradle.org/js/set-time-to-complete-text.js"></script>
 <script async src="https://guides.gradle.org/js/autotrack.js"></script>
 
@@ -21,7 +21,6 @@
 <meta name="author" content="Schalk Cronjé">
 <title>Creating Multi-project Builds</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="./coderay-asciidoctor.css">
 </head>
 <body class="article">
 <header class="site-layout__header site-header" itemscope="itemscope" itemtype="https://schema.org/WPHeader">
@@ -139,7 +138,7 @@
 <p>The Java Development Kit (JDK), version 1.7 or higher</p>
 </li>
 <li>
-<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.6 or better</p>
+<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.7 or better</p>
 </li>
 </ul>
 </div>
@@ -149,7 +148,7 @@
 <h2 id="create_a_root_project"><a class="anchor" href="#create_a_root_project"></a><a class="link" href="#create_a_root_project">Create a root project</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The first step is to create a folder for the new project and add a <a href="https://docs.gradle.org/4.6/userguide/gradle_wrapper.html#sec:wrapper_generation">Gradle Wrapper</a> to the project. If you use the <a href="https://docs.gradle.org/4.6/userguide/build_init_plugin.html">Build Init plugin</a> then the necessary <code>settings.gradle</code> and <code>build.gradle</code> will also be added.</p>
+<p>The first step is to create a folder for the new project and add a <a href="https://docs.gradle.org/4.7/userguide/gradle_wrapper.html#sec:wrapper_generation">Gradle Wrapper</a> to the project. If you use the <a href="https://docs.gradle.org/4.7/userguide/build_init_plugin.html">Build Init plugin</a> then the necessary <code>settings.gradle</code> and <code>build.gradle</code> will also be added.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -181,7 +180,7 @@ BUILD SUCCESSFUL</pre>
 <div class="listingblock">
 <div class="title">settings.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">rootProject.name = <span class="string"><span class="delimiter">'</span><span class="content">creating-multi-project-builds</span><span class="delimiter">'</span></span></code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">rootProject.name = 'creating-multi-project-builds'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -201,7 +200,7 @@ BUILD SUCCESSFUL</pre>
 <div class="listingblock">
 <div class="title">build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">allprojects {
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">allprojects {
     repositories {
         jcenter() <i class="conum" data-value="1"></i><b>(1)</b>
     }
@@ -225,8 +224,8 @@ BUILD SUCCESSFUL</pre>
 <div class="listingblock">
 <div class="title">build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">subprojects {
-    version = <span class="string"><span class="delimiter">'</span><span class="content">1.0</span><span class="delimiter">'</span></span>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">subprojects {
+    version = '1.0'
 }</code></pre>
 </div>
 </div>
@@ -252,13 +251,13 @@ BUILD SUCCESSFUL</pre>
 <div class="listingblock">
 <div class="title">greeting-library/build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">apply plugin : <span class="string"><span class="delimiter">'</span><span class="content">groovy</span><span class="delimiter">'</span></span>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin : 'groovy'
 
 dependencies {
-    compile <span class="string"><span class="delimiter">'</span><span class="content">org.codehaus.groovy:groovy:2.4.10</span><span class="delimiter">'</span></span>
+    compile 'org.codehaus.groovy:groovy:2.4.10'
 
-    testCompile <span class="string"><span class="delimiter">'</span><span class="content">org.spockframework:spock-core:1.0-groovy-2.4</span><span class="delimiter">'</span></span>, {
-        exclude module : <span class="string"><span class="delimiter">'</span><span class="content">groovy-all</span><span class="delimiter">'</span></span>
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4', {
+        exclude module : 'groovy-all'
     }
 }</code></pre>
 </div>
@@ -269,7 +268,7 @@ dependencies {
 <div class="listingblock">
 <div class="title">settings.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">include <span class="string"><span class="delimiter">'</span><span class="content">greeting-library</span><span class="delimiter">'</span></span></code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">include 'greeting-library'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -287,14 +286,14 @@ $ mkdir -p src/test/groovy/greeter</pre>
 <div class="listingblock">
 <div class="title">greeting-library/src/main/groovy/greeter/GreetingFormatter.groovy</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">package</span> greeter
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">package greeter
 
-<span class="keyword">import</span> <span class="include">groovy.transform.CompileStatic</span>
+import groovy.transform.CompileStatic
 
-<span class="annotation">@CompileStatic</span>
-<span class="type">class</span> <span class="class">GreetingFormatter</span> {
-    <span class="directive">static</span> <span class="predefined-type">String</span> greeting(<span class="directive">final</span> <span class="predefined-type">String</span> name) {
-        <span class="string"><span class="delimiter">&quot;</span><span class="content">Hello, </span><span class="inline"><span class="inline-delimiter">${</span>name.capitalize()<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+@CompileStatic
+class GreetingFormatter {
+    static String greeting(final String name) {
+        "Hello, ${name.capitalize()}"
     }
 }</code></pre>
 </div>
@@ -305,16 +304,16 @@ $ mkdir -p src/test/groovy/greeter</pre>
 <div class="listingblock">
 <div class="title">greeting-library/src/test/groovy/greeter/GreetingFormatterSpec.groovy</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">package</span> greeter
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">package greeter
 
-<span class="keyword">import</span> <span class="include">spock.lang.Specification</span>
+import spock.lang.Specification
 
-<span class="type">class</span> <span class="class">GreetingFormatterSpec</span> <span class="directive">extends</span> Specification {
+class GreetingFormatterSpec extends Specification {
 
-    <span class="keyword">def</span> <span class="string"><span class="delimiter">'</span><span class="content">Creating a greeting</span><span class="delimiter">'</span></span>() {
+    def 'Creating a greeting'() {
 
-        <span class="key">expect</span>: <span class="string"><span class="delimiter">'</span><span class="content">The greeting to be correctly capitalized</span><span class="delimiter">'</span></span>
-        GreetingFormatter.greeting(<span class="string"><span class="delimiter">'</span><span class="content">gradlephant</span><span class="delimiter">'</span></span>) == <span class="string"><span class="delimiter">'</span><span class="content">Hello, Gradlephant</span><span class="delimiter">'</span></span>
+        expect: 'The greeting to be correctly capitalized'
+        GreetingFormatter.greeting('gradlephant') == 'Hello, Gradlephant'
 
     }
 }</code></pre>
@@ -327,19 +326,25 @@ $ mkdir -p src/test/groovy/greeter</pre>
 <div class="content">
 <pre>$ ./gradlew build
 
-:greeting-library:compileJava NO-SOURCE
-:greeting-library:compileGroovy
-:greeting-library:processResources NO-SOURCE
-:greeting-library:classes
-:greeting-library:jar
-:greeting-library:assemble
-:greeting-library:compileTestJava NO-SOURCE
-:greeting-library:compileTestGroovy
-:greeting-library:processTestResources NO-SOURCE
-:greeting-library:testClasses
-:greeting-library:test
-:greeting-library:check
-:greeting-library:build
+&gt; Task :greeting-library:compileJava NO-SOURCE
+
+&gt; Task :greeting-library:compileGroovy
+Picked up _JAVA_OPTIONS: -Xmx2048m -Xms512m
+
+&gt; Task :greeting-library:processResources NO-SOURCE
+&gt; Task :greeting-library:classes
+&gt; Task :greeting-library:jar
+&gt; Task :greeting-library:assemble
+&gt; Task :greeting-library:compileTestJava NO-SOURCE
+&gt; Task :greeting-library:compileTestGroovy
+&gt; Task :greeting-library:processTestResources NO-SOURCE
+&gt; Task :greeting-library:testClasses
+
+&gt; Task :greeting-library:test
+Picked up _JAVA_OPTIONS: -Xmx2048m -Xms512m
+
+&gt; Task :greeting-library:check
+&gt; Task :greeting-library:build
 
 BUILD SUCCESSFUL in 15s
 4 actionable tasks: 4 executed</pre>
@@ -367,24 +372,24 @@ BUILD SUCCESSFUL in 15s
 <div class="listingblock">
 <div class="title">greeter/build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">apply plugin : <span class="string"><span class="delimiter">'</span><span class="content">java</span><span class="delimiter">'</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
-apply plugin : <span class="string"><span class="delimiter">'</span><span class="content">application</span><span class="delimiter">'</span></span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin : 'java' <i class="conum" data-value="1"></i><b>(1)</b>
+apply plugin : 'application' <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This is a Java project, so the <a href="https://docs.gradle.org/4.6/userguide/java_plugin.html">Java plugin</a> is required.</td>
+<td>This is a Java project, so the <a href="https://docs.gradle.org/4.7/userguide/java_plugin.html">Java plugin</a> is required.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Add the <a href="https://docs.gradle.org/4.6/userguide/application_plugin.html">Application plugin</a> to make this a Java application.</td>
+<td>Add the <a href="https://docs.gradle.org/4.7/userguide/application_plugin.html">Application plugin</a> to make this a Java application.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The <a href="https://docs.gradle.org/4.6/userguide/application_plugin.html">Application plugin</a> allows you to bundle all of your applications JARs as well as all of their transitive dependencies into a single ZIP or TAR file. It will also add two startup scripts (one for UNIX-like operations systems and one for Windows) to the archive to make it easy for your users to run your application.</p>
+<p>The <a href="https://docs.gradle.org/4.7/userguide/application_plugin.html">Application plugin</a> allows you to bundle all of your applications JARs as well as all of their transitive dependencies into a single ZIP or TAR file. It will also add two startup scripts (one for UNIX-like operations systems and one for Windows) to the archive to make it easy for your users to run your application.</p>
 </div>
 <div class="paragraph">
 <p>Once again, update <code>settings.gradle</code> to add the new project</p>
@@ -392,7 +397,7 @@ apply plugin : <span class="string"><span class="delimiter">'</span><span class=
 <div class="listingblock">
 <div class="title">settings.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">include <span class="string"><span class="delimiter">'</span><span class="content">greeter</span><span class="delimiter">'</span></span></code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">include 'greeter'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -406,12 +411,12 @@ apply plugin : <span class="string"><span class="delimiter">'</span><span class=
 <div class="listingblock">
 <div class="title">greeter/src/main/java/greeter/Greeter.java</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">greeter</span>;
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">package greeter;
 
-<span class="directive">public</span> <span class="type">class</span> <span class="class">Greeter</span> {
-    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
-        <span class="directive">final</span> <span class="predefined-type">String</span> output = GreetingFormatter.greeting(args[<span class="integer">0</span>]);
-        <span class="predefined-type">System</span>.out.println(output);
+public class Greeter {
+    public static void main(String[] args) {
+        final String output = GreetingFormatter.greeting(args[0]);
+        System.out.println(output);
     }
 }</code></pre>
 </div>
@@ -422,7 +427,7 @@ apply plugin : <span class="string"><span class="delimiter">'</span><span class=
 <div class="listingblock">
 <div class="title">greeter/build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">mainClassName = <span class="string"><span class="delimiter">'</span><span class="content">greeter.Greeter</span><span class="delimiter">'</span></span> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">mainClassName = 'greeter.Greeter' <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -441,12 +446,6 @@ apply plugin : <span class="string"><span class="delimiter">'</span><span class=
 <pre>$ ./gradlew build
 
 ...
-.../Greeter.java:5: error: cannot find symbol
-        final String output = GreetingFormatter.greeting(args[0]);
-                              ^
-  symbol:   variable GreetingFormatter
-  location: class Greeter
-1 error
 
 FAILURE: Build failed with an exception.
 
@@ -457,9 +456,7 @@ Execution failed for task ':greeter:compileJava'.
 * Try:
 Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
 
-* Get more help at https://help.gradle.org
-
-BUILD FAILED in 1s</pre>
+* Get more help at https://help.gradle.org</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -468,8 +465,8 @@ BUILD FAILED in 1s</pre>
 <div class="listingblock">
 <div class="title">greeter/build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">dependencies {
-    compile project(<span class="string"><span class="delimiter">'</span><span class="content">:greeting-library</span><span class="delimiter">'</span></span>) <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">dependencies {
+    compile project(':greeting-library') <i class="conum" data-value="1"></i><b>(1)</b>
 }</code></pre>
 </div>
 </div>
@@ -488,37 +485,43 @@ BUILD FAILED in 1s</pre>
 <div class="content">
 <pre>$ ./gradlew build
 
-:greeting-library:compileJava NO-SOURCE
-:greeting-library:compileGroovy UP-TO-DATE
-:greeting-library:processResources NO-SOURCE
-:greeting-library:classes UP-TO-DATE
-:greeting-library:jar UP-TO-DATE
-:greeter:compileJava
-:greeter:compileGroovy NO-SOURCE
-:greeter:processResources NO-SOURCE
-:greeter:classes
-:greeter:jar
-:greeter:startScripts
-:greeter:distTar
-:greeter:distZip
-:greeter:assemble
-:greeter:compileTestJava NO-SOURCE
-:greeter:compileTestGroovy
-:greeter:processTestResources NO-SOURCE
-:greeter:testClasses
-:greeter:test
-:greeter:check
-:greeter:build
-:greeting-library:assemble UP-TO-DATE
-:greeting-library:compileTestJava NO-SOURCE
-:greeting-library:compileTestGroovy UP-TO-DATE
-:greeting-library:processTestResources NO-SOURCE
-:greeting-library:testClasses UP-TO-DATE
-:greeting-library:test UP-TO-DATE
-:greeting-library:check UP-TO-DATE
-:greeting-library:build UP-TO-DATE
+&gt; Task :greeting-library:compileJava NO-SOURCE
+&gt; Task :greeting-library:compileGroovy UP-TO-DATE
+&gt; Task :greeting-library:processResources NO-SOURCE
+&gt; Task :greeting-library:classes UP-TO-DATE
+&gt; Task :greeting-library:jar UP-TO-DATE
+&gt; Task :greeter:compileJava
+&gt; Task :greeter:compileGroovy NO-SOURCE
+&gt; Task :greeter:processResources NO-SOURCE
+&gt; Task :greeter:classes
+&gt; Task :greeter:jar
+&gt; Task :greeter:startScripts
+&gt; Task :greeter:distTar
+&gt; Task :greeter:distZip
+&gt; Task :greeter:assemble
+&gt; Task :greeter:compileTestJava NO-SOURCE
 
-BUILD SUCCESSFUL in 5s
+&gt; Task :greeter:compileTestGroovy
+Picked up _JAVA_OPTIONS: -Xmx2048m -Xms512m
+
+&gt; Task :greeter:processTestResources NO-SOURCE
+&gt; Task :greeter:testClasses
+
+&gt; Task :greeter:test
+Picked up _JAVA_OPTIONS: -Xmx2048m -Xms512m
+
+&gt; Task :greeter:check
+&gt; Task :greeter:build
+&gt; Task :greeting-library:assemble UP-TO-DATE
+&gt; Task :greeting-library:compileTestJava NO-SOURCE
+&gt; Task :greeting-library:compileTestGroovy UP-TO-DATE
+&gt; Task :greeting-library:processTestResources NO-SOURCE
+&gt; Task :greeting-library:testClasses UP-TO-DATE
+&gt; Task :greeting-library:test UP-TO-DATE
+&gt; Task :greeting-library:check UP-TO-DATE
+&gt; Task :greeting-library:build UP-TO-DATE
+
+BUILD SUCCESSFUL in 4s
 11 actionable tasks: 7 executed, 4 up-to-date</pre>
 </div>
 </div>
@@ -526,18 +529,18 @@ BUILD SUCCESSFUL in 5s
 <p>Notice how each subproject is prefixed in the output, so that you know which task from which project is being executed. Also note that Gradle does not process all tasks from one subproject before moving onto another.</p>
 </div>
 <div class="paragraph">
-<p>Add a test to ensure your code in the application itself works. As Spock Framework is a popular approach to testing Java code as well, create the test by first adding the <a href="https://docs.gradle.org/4.6/userguide/groovy_plugin.html">Groovy plugin</a> to the <code>build.gradle</code> script in the <code>greeter</code> sub-project. This requires the <code>groovy</code> plugin, and that includes the <code>java</code> plugin, so you can replace the word <code>java</code> with <code>groovy</code> as shown.</p>
+<p>Add a test to ensure your code in the application itself works. As Spock Framework is a popular approach to testing Java code as well, create the test by first adding the <a href="https://docs.gradle.org/4.7/userguide/groovy_plugin.html">Groovy plugin</a> to the <code>build.gradle</code> script in the <code>greeter</code> sub-project. This requires the <code>groovy</code> plugin, and that includes the <code>java</code> plugin, so you can replace the word <code>java</code> with <code>groovy</code> as shown.</p>
 </div>
 <div class="listingblock">
 <div class="title">greeter/build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">apply plugin : <span class="string"><span class="delimiter">'</span><span class="content">groovy</span><span class="delimiter">'</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin : 'groovy' <i class="conum" data-value="1"></i><b>(1)</b>
 
-<span class="comment">// then, add the following testCompile dependency to the dependencies block:</span>
+// then, add the following testCompile dependency to the dependencies block:
 
 dependencies {
-    testCompile <span class="string"><span class="delimiter">'</span><span class="content">org.spockframework:spock-core:1.0-groovy-2.4</span><span class="delimiter">'</span></span>, {
-        exclude module : <span class="string"><span class="delimiter">'</span><span class="content">groovy-all</span><span class="delimiter">'</span></span>
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4', {
+        exclude module : 'groovy-all'
     }
 }</code></pre>
 </div>
@@ -556,23 +559,23 @@ dependencies {
 <div class="listingblock">
 <div class="title">greeter/src/test/groovy/greeter/GreeterSpec.groovy</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">greeter</span>
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">package greeter
 
-<span class="namespace">import</span> <span class="namespace">spock.lang.Specification</span>
+import spock.lang.Specification
 
-<span class="namespace">class</span> <span class="namespace">GreeterSpec</span> <span class="namespace">extends</span> <span class="namespace">Specification</span> {
+class GreeterSpec extends Specification {
 
-    <span class="namespace">def</span> <span class="string"><span class="delimiter">'</span><span class="content">Calling the entry point</span><span class="delimiter">'</span></span>() {
+    def 'Calling the entry point'() {
 
-        <span class="namespace">setup</span>: <span class="string"><span class="delimiter">'</span><span class="content">Re-route standard out</span><span class="delimiter">'</span></span>
-        <span class="namespace">def</span> <span class="namespace">buf</span> = <span class="namespace">new</span> <span class="namespace">ByteArrayOutputStream</span>(<span class="integer">1024</span>)
-        <span class="namespace">System.out</span> = <span class="namespace">new</span> <span class="namespace">PrintStream</span>(<span class="namespace">buf</span>)
+        setup: 'Re-route standard out'
+        def buf = new ByteArrayOutputStream(1024)
+        System.out = new PrintStream(buf)
 
-        <span class="namespace">when</span>: <span class="string"><span class="delimiter">'</span><span class="content">The entrypoint is executed</span><span class="delimiter">'</span></span>
-        <span class="namespace">Greeter.main</span>(<span class="string"><span class="delimiter">'</span><span class="content">gradlephant</span><span class="delimiter">'</span></span>)
+        when: 'The entrypoint is executed'
+        Greeter.main('gradlephant')
 
-        <span class="namespace">then</span>: <span class="string"><span class="delimiter">'</span><span class="content">The correct greeting is output</span><span class="delimiter">'</span></span>
-        <span class="namespace">buf.toString</span>() == <span class="string"><span class="delimiter">&quot;</span><span class="content">Hello, Gradlephant</span><span class="char">\n</span><span class="delimiter">&quot;</span></span>
+        then: 'The correct greeting is output'
+        buf.toString() == "Hello, Gradlephant\n"
     }
 }</code></pre>
 </div>
@@ -584,20 +587,20 @@ dependencies {
 <div class="content">
 <pre>$ ./gradlew :greeter:test
 
-:greeting-library:compileJava NO-SOURCE
-:greeting-library:compileGroovy UP-TO-DATE
-:greeting-library:processResources NO-SOURCE
-:greeting-library:classes UP-TO-DATE
-:greeting-library:jar UP-TO-DATE
-:greeter:compileJava UP-TO-DATE
-:greeter:compileGroovy NO-SOURCE
-:greeter:processResources NO-SOURCE
-:greeter:classes UP-TO-DATE
-:greeter:compileTestJava NO-SOURCE
-:greeter:compileTestGroovy UP-TO-DATE
-:greeter:processTestResources NO-SOURCE
-:greeter:testClasses UP-TO-DATE
-:greeter:test UP-TO-DATE
+&gt; Task :greeting-library:compileJava NO-SOURCE
+&gt; Task :greeting-library:compileGroovy UP-TO-DATE
+&gt; Task :greeting-library:processResources NO-SOURCE
+&gt; Task :greeting-library:classes UP-TO-DATE
+&gt; Task :greeting-library:jar UP-TO-DATE
+&gt; Task :greeter:compileJava UP-TO-DATE
+&gt; Task :greeter:compileGroovy NO-SOURCE
+&gt; Task :greeter:processResources NO-SOURCE
+&gt; Task :greeter:classes UP-TO-DATE
+&gt; Task :greeter:compileTestJava NO-SOURCE
+&gt; Task :greeter:compileTestGroovy UP-TO-DATE
+&gt; Task :greeter:processTestResources NO-SOURCE
+&gt; Task :greeter:testClasses UP-TO-DATE
+&gt; Task :greeter:test UP-TO-DATE
 
 BUILD SUCCESSFUL in 0s
 5 actionable tasks: 5 up-to-date</pre>
@@ -645,13 +648,13 @@ Did you notice that the task executed was <code>:greeter:test</code>, but when r
 <p>It is considered good practice to create documentation for a software project. Although there a number of authoring methods to accomplish this goal, you will be using the very popular <a href="http://asciidoctor.org/">Asciidoctor</a> tool.</p>
 </div>
 <div class="paragraph">
-<p>Start by adding the <a href="https://plugins.gradle.org/plugin/org.asciidoctor.convert">Asciidoctor plugin</a> to a <a href="https://docs.gradle.org/4.6/userguide/plugins.html#sec:plugins_block">plugins block</a> to the top of the <code>build.gradle</code> script in the root project.</p>
+<p>Start by adding the <a href="https://plugins.gradle.org/plugin/org.asciidoctor.convert">Asciidoctor plugin</a> to a <a href="https://docs.gradle.org/4.7/userguide/plugins.html#sec:plugins_block">plugins block</a> to the top of the <code>build.gradle</code> script in the root project.</p>
 </div>
 <div class="listingblock">
 <div class="title">build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">plugins {
-  id <span class="string"><span class="delimiter">'</span><span class="content">org.asciidoctor.convert</span><span class="delimiter">'</span></span> version <span class="string"><span class="delimiter">'</span><span class="content">1.5.6</span><span class="delimiter">'</span></span> apply <span class="predefined-constant">false</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
+  id 'org.asciidoctor.convert' version '1.5.6' apply false <i class="conum" data-value="1"></i><b>(1)</b>
 }</code></pre>
 </div>
 </div>
@@ -677,15 +680,15 @@ Did you notice that the task executed was <code>:greeter:test</code>, but when r
 <div class="listingblock">
 <div class="title">docs/build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">apply plugin : <span class="string"><span class="delimiter">'</span><span class="content">org.asciidoctor.convert</span><span class="delimiter">'</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">apply plugin : 'org.asciidoctor.convert' <i class="conum" data-value="1"></i><b>(1)</b>
 
 asciidoctor {
     sources {
-        include <span class="string"><span class="delimiter">'</span><span class="content">greeter.adoc</span><span class="delimiter">'</span></span> <i class="conum" data-value="2"></i><b>(2)</b>
+        include 'greeter.adoc' <i class="conum" data-value="2"></i><b>(2)</b>
     }
 }
 
-build.dependsOn <span class="string"><span class="delimiter">'</span><span class="content">asciidoctor</span><span class="delimiter">'</span></span> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+build.dependsOn 'asciidoctor' <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -710,7 +713,7 @@ build.dependsOn <span class="string"><span class="delimiter">'</span><span class
 <div class="listingblock">
 <div class="title">settings.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">include <span class="string"><span class="delimiter">'</span><span class="content">docs</span><span class="delimiter">'</span></span></code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">include 'docs'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -757,9 +760,9 @@ If you run the command <code>./gradlew tasks</code>, you will now see a task cal
 <div class="content">
 <pre>$ ./gradlew asciidoctor
 
-:docs:asciidoctor
+&gt; Task :docs:asciidoctor
 
-BUILD SUCCESSFUL in 8s
+BUILD SUCCESSFUL in 7s
 1 actionable task: 1 executed</pre>
 </div>
 </div>
@@ -789,7 +792,7 @@ Did you notice that Gradle knew to only run this task in the <code>docs</code> s
 <div class="listingblock groovy">
 <div class="title">greeter/build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>distZip {
+<pre class="prettyprint highlight"><code>distZip {
     from project(':docs').asciidoctor, { <i class="conum" data-value="1"></i><b>(1)</b>
         into "${project.name}-${version}"
     }
@@ -816,41 +819,41 @@ distTar {
 <div class="content">
 <pre>$ ./gradlew build
 
-:docs:asciidoctor UP-TO-DATE
-:docs:assemble UP-TO-DATE
-:docs:check UP-TO-DATE
-:docs:build UP-TO-DATE
-:greeting-library:compileJava NO-SOURCE
-:greeting-library:compileGroovy UP-TO-DATE
-:greeting-library:processResources NO-SOURCE
-:greeting-library:classes UP-TO-DATE
-:greeting-library:jar UP-TO-DATE
-:greeter:compileJava UP-TO-DATE
-:greeter:compileGroovy NO-SOURCE
-:greeter:processResources NO-SOURCE
-:greeter:classes UP-TO-DATE
-:greeter:jar UP-TO-DATE
-:greeter:startScripts UP-TO-DATE
-:greeter:distTar
-:greeter:distZip
-:greeter:assemble
-:greeter:compileTestJava NO-SOURCE
-:greeter:compileTestGroovy UP-TO-DATE
-:greeter:processTestResources NO-SOURCE
-:greeter:testClasses UP-TO-DATE
-:greeter:test UP-TO-DATE
-:greeter:check UP-TO-DATE
-:greeter:build
-:greeting-library:assemble UP-TO-DATE
-:greeting-library:compileTestJava NO-SOURCE
-:greeting-library:compileTestGroovy UP-TO-DATE
-:greeting-library:processTestResources NO-SOURCE
-:greeting-library:testClasses UP-TO-DATE
-:greeting-library:test UP-TO-DATE
-:greeting-library:check UP-TO-DATE
-:greeting-library:build UP-TO-DATE
+&gt; Task :docs:asciidoctor UP-TO-DATE
+&gt; Task :docs:assemble UP-TO-DATE
+&gt; Task :docs:check UP-TO-DATE
+&gt; Task :docs:build UP-TO-DATE
+&gt; Task :greeting-library:compileJava NO-SOURCE
+&gt; Task :greeting-library:compileGroovy UP-TO-DATE
+&gt; Task :greeting-library:processResources NO-SOURCE
+&gt; Task :greeting-library:classes UP-TO-DATE
+&gt; Task :greeting-library:jar UP-TO-DATE
+&gt; Task :greeter:compileJava UP-TO-DATE
+&gt; Task :greeter:compileGroovy NO-SOURCE
+&gt; Task :greeter:processResources NO-SOURCE
+&gt; Task :greeter:classes UP-TO-DATE
+&gt; Task :greeter:jar UP-TO-DATE
+&gt; Task :greeter:startScripts UP-TO-DATE
+&gt; Task :greeter:distTar
+&gt; Task :greeter:distZip
+&gt; Task :greeter:assemble
+&gt; Task :greeter:compileTestJava NO-SOURCE
+&gt; Task :greeter:compileTestGroovy UP-TO-DATE
+&gt; Task :greeter:processTestResources NO-SOURCE
+&gt; Task :greeter:testClasses UP-TO-DATE
+&gt; Task :greeter:test UP-TO-DATE
+&gt; Task :greeter:check UP-TO-DATE
+&gt; Task :greeter:build
+&gt; Task :greeting-library:assemble UP-TO-DATE
+&gt; Task :greeting-library:compileTestJava NO-SOURCE
+&gt; Task :greeting-library:compileTestGroovy UP-TO-DATE
+&gt; Task :greeting-library:processTestResources NO-SOURCE
+&gt; Task :greeting-library:testClasses UP-TO-DATE
+&gt; Task :greeting-library:test UP-TO-DATE
+&gt; Task :greeting-library:check UP-TO-DATE
+&gt; Task :greeting-library:build UP-TO-DATE
 
-BUILD SUCCESSFUL in 0s
+BUILD SUCCESSFUL in 1s
 12 actionable tasks: 2 executed, 10 up-to-date</pre>
 </div>
 </div>
@@ -883,13 +886,13 @@ A strong feature of Gradle that sets it apart from some other build tools is how
 <div class="listingblock">
 <div class="title">build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">configure(subprojects.findAll {<span class="local-variable">it</span>.name == <span class="string"><span class="delimiter">'</span><span class="content">greeter</span><span class="delimiter">'</span></span> || <span class="local-variable">it</span>.name == <span class="string"><span class="delimiter">'</span><span class="content">greeting-library</span><span class="delimiter">'</span></span>} ) { <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">configure(subprojects.findAll {it.name == 'greeter' || it.name == 'greeting-library'} ) { <i class="conum" data-value="1"></i><b>(1)</b>
 
-    apply plugin : <span class="string"><span class="delimiter">'</span><span class="content">groovy</span><span class="delimiter">'</span></span>
+    apply plugin : 'groovy'
 
     dependencies {
-        testCompile <span class="string"><span class="delimiter">'</span><span class="content">org.spockframework:spock-core:1.0-groovy-2.4</span><span class="delimiter">'</span></span>, {
-            exclude module : <span class="string"><span class="delimiter">'</span><span class="content">groovy-all</span><span class="delimiter">'</span></span>
+        testCompile 'org.spockframework:spock-core:1.0-groovy-2.4', {
+            exclude module : 'groovy-all'
         }
     }
 }</code></pre>
@@ -909,7 +912,7 @@ A strong feature of Gradle that sets it apart from some other build tools is how
 <div class="listingblock groovy">
 <div class="title">greeting-library/build.gradle (Removed code)</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>apply plugin : 'groovy'
+<pre class="prettyprint highlight"><code>apply plugin : 'groovy'
 
 dependencies {
     testCompile 'org.spockframework:spock-core:1.0-groovy-2.4', {
@@ -973,7 +976,7 @@ dependencies {
 <p>Remembering to type <code>./gradlew</code>, <code>../gradlew</code> or even <code>../../gradlew</code> can become an arduous task. If you are on a Unix-like operating system consider installing <a href="https://github.com/dougborg/gdub">gdub</a>.</p>
 </li>
 <li>
-<p>Read about multi-project in the <a href="https://docs.gradle.org/4.6/userguide/multi_project_builds.html">User Manual</a></p>
+<p>Read about multi-project in the <a href="https://docs.gradle.org/4.7/userguide/multi_project_builds.html">User Manual</a></p>
 </li>
 </ul>
 </div>
@@ -988,6 +991,9 @@ dependencies {
 </div>
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+<script>prettyPrint()</script>
 <footer class="site-layout__footer site-footer" itemscope="itemscope" itemtype="https://schema.org/WPFooter">
     <nav class="site-footer__navigation" itemtype="https://schema.org/SiteNavigationElement">
         <section class="site-footer__links">
