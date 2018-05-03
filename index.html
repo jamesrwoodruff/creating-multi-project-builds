@@ -346,7 +346,7 @@ Picked up _JAVA_OPTIONS: -Xmx2048m -Xms512m
 &gt; Task :greeting-library:check
 &gt; Task :greeting-library:build
 
-BUILD SUCCESSFUL in 15s
+BUILD SUCCESSFUL in 16s
 4 actionable tasks: 4 executed</pre>
 </div>
 </div>
@@ -575,7 +575,7 @@ class GreeterSpec extends Specification {
         Greeter.main('gradlephant')
 
         then: 'The correct greeting is output'
-        buf.toString() == "Hello, Gradlephant\n"
+        buf.toString() == "Hello, Gradlephant\n".denormalize()
     }
 }</code></pre>
 </div>
@@ -762,7 +762,7 @@ If you run the command <code>./gradlew tasks</code>, you will now see a task cal
 
 &gt; Task :docs:asciidoctor
 
-BUILD SUCCESSFUL in 7s
+BUILD SUCCESSFUL in 6s
 1 actionable task: 1 executed</pre>
 </div>
 </div>
