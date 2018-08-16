@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.1">
+<meta name="generator" content="Asciidoctor 1.5.5">
 <title>Creating Multi-project Builds</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
 <link crossorigin href="//assets.gradle.com" rel="preconnect">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400i">
-<link rel="stylesheet" href="https://guides.gradle.org/css/asciidoctor.css">
-<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme-4.8.1.css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme-4.10.css">
 <link rel="apple-touch-icon" sizes="180x180" href="https://guides.gradle.org/icon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-16x16.png" sizes="16x16">
 <link rel="manifest" href="https://guides.gradle.org/icon/manifest.json">
 <link rel="shortcut icon" href="https://guides.gradle.org/icon/favicon.ico">
-<script defer src="https://guides.gradle.org/js/guides-4.8.js"></script>
+<script defer src="https://guides.gradle.org/js/guides-4.10.js"></script>
 <script defer src="https://guides.gradle.org/js/set-time-to-complete-text.js"></script>
 <script async src="https://guides.gradle.org/js/autotrack.js"></script>
 
@@ -167,14 +167,6 @@
     <div class="chapter">
 <div id="header">
 <h1>Creating Multi-project Builds</h1>
-</div>
-<div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Multi-project builds helps with modularization. It allows a person to concentrate on one area of work in a larger project, while Gradle takes care of dependencies from other parts of the project.</p>
-</div>
-</div>
 <div id="toc" class="toc">
 <div id="toctitle">Contents</div>
 <ul class="sectlevel1">
@@ -191,6 +183,14 @@
 <li><a href="#next_steps">Next Steps</a></li>
 <li><a href="#help_improve_this_guide">Help improve this guide</a></li>
 </ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Multi-project builds helps with modularization. It allows a person to concentrate on one area of work in a larger project, while Gradle takes care of dependencies from other parts of the project.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -229,7 +229,7 @@
 </div>
 </li>
 <li>
-<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.8 or better</p>
+<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.10-rc-2 or better</p>
 </li>
 </ul>
 </div>
@@ -239,7 +239,7 @@
 <h2 id="create_a_root_project"><a class="anchor" href="#create_a_root_project"></a><a class="link" href="#create_a_root_project">Create a root project</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The first step is to create a folder for the new project and add a <a href="https://docs.gradle.org/4.8/userguide/gradle_wrapper.html#sec:wrapper_generation">Gradle Wrapper</a> to the project. If you use the <a href="https://docs.gradle.org/4.8/userguide/build_init_plugin.html">Build Init plugin</a> then the necessary settings and build scripts will also be added.</p>
+<p>The first step is to create a folder for the new project and add a <a href="https://docs.gradle.org/4.10-rc-2/userguide/gradle_wrapper.html#sec:wrapper_generation">Gradle Wrapper</a> to the project. If you use the <a href="https://docs.gradle.org/4.10-rc-2/userguide/build_init_plugin.html">Build Init plugin</a> then the necessary settings and build scripts will also be added.</p>
 </div>
 <div class="listingblock multi-language-sample">
 <div class="title">Groovy DSL</div>
@@ -499,7 +499,7 @@ Picked up _JAVA_OPTIONS: -Xmx2048m -Xms512m
 &gt; Task :greeting-library:check
 &gt; Task :greeting-library:build
 
-BUILD SUCCESSFUL in 18s
+BUILD SUCCESSFUL in 20s
 4 actionable tasks: 4 executed</pre>
 </div>
 </div>
@@ -544,16 +544,16 @@ BUILD SUCCESSFUL in 18s
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This is a Java project, so the <a href="https://docs.gradle.org/4.8/userguide/java_plugin.html">Java plugin</a> is required.</td>
+<td>This is a Java project, so the <a href="https://docs.gradle.org/4.10-rc-2/userguide/java_plugin.html">Java plugin</a> is required.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Add the <a href="https://docs.gradle.org/4.8/userguide/application_plugin.html">Application plugin</a> to make this a Java application.</td>
+<td>Add the <a href="https://docs.gradle.org/4.10-rc-2/userguide/application_plugin.html">Application plugin</a> to make this a Java application.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The <a href="https://docs.gradle.org/4.8/userguide/application_plugin.html">Application plugin</a> allows you to bundle all of your applications JARs as well as all of their transitive dependencies into a single ZIP or TAR file. It will also add two startup scripts (one for UNIX-like operations systems and one for Windows) to the archive to make it easy for your users to run your application.</p>
+<p>The <a href="https://docs.gradle.org/4.10-rc-2/userguide/application_plugin.html">Application plugin</a> allows you to bundle all of your applications JARs as well as all of their transitive dependencies into a single ZIP or TAR file. It will also add two startup scripts (one for UNIX-like operations systems and one for Windows) to the archive to make it easy for your users to run your application.</p>
 </div>
 <div class="paragraph">
 <p>Once again, update the settings script to add the new project</p>
@@ -696,7 +696,7 @@ Picked up _JAVA_OPTIONS: -Xmx2048m -Xms512m
 &gt; Task :greeting-library:check UP-TO-DATE
 &gt; Task :greeting-library:build UP-TO-DATE
 
-BUILD SUCCESSFUL in 5s
+BUILD SUCCESSFUL in 7s
 11 actionable tasks: 7 executed, 4 up-to-date</pre>
 </div>
 </div>
@@ -704,7 +704,7 @@ BUILD SUCCESSFUL in 5s
 <p>Notice how each subproject is prefixed in the output, so that you know which task from which project is being executed. Also note that Gradle does not process all tasks from one subproject before moving onto another.</p>
 </div>
 <div class="paragraph">
-<p>Add a test to ensure your code in the application itself works. As Spock Framework is a popular approach to testing Java code as well, create the test by first adding the <a href="https://docs.gradle.org/4.8/userguide/groovy_plugin.html">Groovy plugin</a> to the build script of the <code>greeter</code> sub-project. This requires the <code>groovy</code> plugin, and that includes the <code>java</code> plugin, so you can replace the word <code>java</code> with <code>groovy</code> as shown.</p>
+<p>Add a test to ensure your code in the application itself works. As Spock Framework is a popular approach to testing Java code as well, create the test by first adding the <a href="https://docs.gradle.org/4.10-rc-2/userguide/groovy_plugin.html">Groovy plugin</a> to the build script of the <code>greeter</code> sub-project. This requires the <code>groovy</code> plugin, and that includes the <code>java</code> plugin, so you can replace the word <code>java</code> with <code>groovy</code> as shown.</p>
 </div>
 <div class="listingblock multi-language-sample">
 <div class="title">greeter/build.gradle</div>
@@ -842,7 +842,7 @@ Did you notice that the task executed was <code>:greeter:test</code>, but when r
 <p>It is considered good practice to create documentation for a software project. Although there a number of authoring methods to accomplish this goal, you will be using the very popular <a href="http://asciidoctor.org/">Asciidoctor</a> tool.</p>
 </div>
 <div class="paragraph">
-<p>Start by adding the <a href="https://plugins.gradle.org/plugin/org.asciidoctor.convert">Asciidoctor plugin</a> to a <a href="https://docs.gradle.org/4.8/userguide/plugins.html#sec:plugins_block">plugins block</a> to the top of the root project build script.</p>
+<p>Start by adding the <a href="https://plugins.gradle.org/plugin/org.asciidoctor.convert">Asciidoctor plugin</a> to a <a href="https://docs.gradle.org/4.10-rc-2/userguide/plugins.html#sec:plugins_block">plugins block</a> to the top of the root project build script.</p>
 </div>
 <div class="listingblock multi-language-sample">
 <div class="title">build.gradle</div>
@@ -1250,7 +1250,7 @@ dependencies {
 <p>Remembering to type <code>./gradlew</code>, <code>../gradlew</code> or even <code>../../gradlew</code> can become an arduous task. If you are on a Unix-like operating system consider installing <a href="https://github.com/dougborg/gdub">gdub</a>.</p>
 </li>
 <li>
-<p>Read about multi-project in the <a href="https://docs.gradle.org/4.8/userguide/multi_project_builds.html">User Manual</a></p>
+<p>Read about multi-project in the <a href="https://docs.gradle.org/4.10-rc-2/userguide/multi_project_builds.html">User Manual</a></p>
 </li>
 </ul>
 </div>
